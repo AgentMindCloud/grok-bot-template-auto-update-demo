@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Draft: Grok Bot template updates</title>
+  <style>
+    :root {
+      --ink: #1c1915;
+      --muted: #5e564c;
+      --paper: #f3ecdf;
+      --card: #fffaf3;
+      --line: #e3d5c2;
+      --fail: #6e1d1d;
+      --fail-soft: #f8e8e4;
+      --pine: #1f4d38;
+      --pine-soft: #e5f0ea;
+      --amber: #8a5a12;
+      --amber-soft: #f8efd8;
+      --shadow: 0 1px 0 rgba(28, 25, 21, 0.04);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font: 16px/1.5 "Segoe UI", system-ui, sans-serif;
+    }
+
+    .banner {
+      background: var(--fail);
+      color: #fff8f4;
+      padding: 14px 20px;
+    }
+
+    .banner-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .banner strong {
+      display: block;
+      font-size: 15px;
+      letter-spacing: 0.01em;
+    }
+
+    .banner p {
+      margin: 4px 0 0;
+      font-size: 14px;
+      color: #f3d2cb;
+    }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    header.page h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 650;
+      letter-spacing: -0.03em;
+    }
+
+    header.page .lede {
+      margin: 0 0 22px;
+      max-width: 68ch;
+      color: var(--muted);
+    }
+
+    .try {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .try div {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 12px 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .try span {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .try p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card + .card { margin-top: 16px; }
+
+    .card h2 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+
+    .card .hint {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--pine-soft);
+      color: var(--pine);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .pill {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 13px;
+      font-weight: 650;
+      background: var(--amber-soft);
+      color: var(--amber);
+    }
+
+    .pill.quiet {
+      background: #efeae2;
+      color: var(--muted);
+    }
+
+    .switch {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    .switch input { margin-top: 3px; }
+
+    .switch strong { display: block; }
+
+    .switch span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    label.field {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    label.field span,
+    .publisher label span {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    label.field em,
+    .flag {
+      font-style: normal;
+      font-weight: 650;
+      color: var(--fail);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 72px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      color: inherit;
+      background: #fff;
+    }
+
+    textarea:focus {
+      outline: 2px solid #c9b89a;
+      border-color: #c9b89a;
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+      color: #fffaf3;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    button.choice {
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .conflict {
+      border: 1px solid #e4c4bc;
+      background: var(--fail-soft);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .conflict h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .conflict p { margin: 0 0 8px; font-size: 14px; }
+
+    .diff {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .diff div {
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 13px;
+    }
+
+    .diff strong { display: block; margin-bottom: 4px; }
+
+    .durable {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .durable article {
+      background: #f7f1e7;
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+
+    .durable h3 {
+      margin: 0 0 4px;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .durable p { margin: 0; font-size: 14px; }
+
+    .notice {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+
+    .notice.available { border-color: #e2c98a; background: #fffaf0; }
+
+    .notice.applied { border-color: #b7d2c4; background: #f4faf6; }
+
+    .notice h3 { margin: 0 0 6px; font-size: 15px; }
+
+    .notice p { margin: 0; font-size: 14px; }
+
+    .empty {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .error {
+      margin: 10px 0 0;
+      color: var(--fail);
+      font-size: 14px;
+      min-height: 1.2em;
+    }
+
+    .log {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .log li { margin: 4px 0; }
+
+    footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      header.page h1 { font-size: 26px; }
+      .try, .layout, .diff { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="banner-inner">
+      <strong>Live grade: FAIL. draft simulation, does not clear the fail.</strong>
+      <p>Installed Grok Bot template copies do not show a version, do not get an update notice, and do not have a safe in-place update. This page only simulates the draft.</p>
+    </div>
+  </div>
+  <main>
+    <header class="page">
+      <h1>Update an installed Dr Eggbot</h1>
+      <p class="lede">You installed a copy of the Dr Eggbot template. A later version exists. Nothing here installs, publishes, or contacts a live bot. Auto-update stays off until you turn it on. A field you edited is never replaced unless you choose Take template.</p>
+    </header>
+
+    <section class="try" aria-label="Suggested path">
+      <div><span>1</span><p>Publish v0.3.0. One update notice appears.</p></div>
+      <div><span>2</span><p>Run the bot. The notice does not appear again.</p></div>
+      <div><span>3</span><p>Edit instructions, publish again, then choose Keep mine or Take template.</p></div>
+      <div><span>4</span><p>Roll back. Memory, chat, and the Monday schedule stay.</p></div>
+    </section>
+
+    <div class="layout">
+      <section class="card" aria-labelledby="installed-heading">
+        <h2 id="installed-heading">Installed bot</h2>
+        <p class="hint">This copy is pinned. Publishing a template version does not change it.</p>
+        <div class="badge-row">
+          <div class="badge" id="version-badge">From template Dr Eggbot, version v0.2.0</div>
+          <div class="pill quiet" id="newer-pill">Up to date</div>
+        </div>
+
+        <label class="switch">
+          <input id="auto-update" type="checkbox" />
+          <div>
+            <strong>Auto-update</strong>
+            <span>Off by default. When on, a new version applies on its own and posts one notice. Conflicting fields are skipped and flagged.</span>
+          </div>
+        </label>
+
+        <div id="fields"></div>
+        <div id="conflicts"></div>
+
+        <div class="row">
+          <button type="button" id="run-bot" class="secondary">Run bot</button>
+          <button type="button" id="apply-update">Update</button>
+          <button type="button" id="rollback" class="secondary">Roll back this update</button>
+          <button type="button" id="edit-sample" class="secondary">Edit instructions locally</button>
+        </div>
+
+        <div class="durable" id="durable"></div>
+      </section>
+
+      <div>
+        <section class="card" aria-labelledby="notice-heading">
+          <h2 id="notice-heading">Notices</h2>
+          <p class="hint" id="notice-count">One notice per new version. Runs do not add another.</p>
+          <div id="notices"></div>
+        </section>
+
+        <section class="card publisher" aria-labelledby="publisher-heading">
+          <h2 id="publisher-heading">Publisher</h2>
+          <p class="hint">A new version is a deliberate publish with a changelog line. Older installs keep working.</p>
+          <label>
+            <span>Changelog line</span>
+            <textarea id="changelog"></textarea>
+          </label>
+          <div class="row">
+            <button type="button" id="publish">Publish this version</button>
+          </div>
+          <p class="error" id="publish-error" role="status"></p>
+          <p class="hint" id="queue-label"></p>
+        </section>
+
+        <section class="card" aria-labelledby="log-heading">
+          <h2 id="log-heading">What just happened</h2>
+          <ol class="log" id="log"></ol>
+        </section>
+      </div>
+    </div>
+    <footer>
+      Draft only. The live grade is FAIL. See RECEIPT.md for the public evidence.
+    </footer>
+  </main>
+
+  <script src="update-model.js"></script>
+  <script>
+    (function () {
+      var sim = TemplateUpdates.createSimulation();
+      var seed = TemplateUpdates.view(sim).fields;
+      var queue = [
+        {
+          version: "v0.3.0",
+          changelog: "Offers the transcript skim once, on first run. The skill text now says so.",
+          fields: {
+            name: seed.name,
+            instructions: seed.instructions + " Offer the transcript skim once, on first run.",
+            routines: seed.routines,
+            skills: seed.skills + " First-run skim offer."
+          }
+        },
+        {
+          version: "v0.4.0",
+          changelog: "Tightens the Monday checkup wording. The bot name stays Dr Eggbot.",
+          fields: {
+            name: seed.name,
+            instructions: seed.instructions + " Offer the transcript skim once, on first run.",
+            routines: "Monday checkup stays a report, not a delete. Stay quiet when there is nothing to propose.",
+            skills: seed.skills + " First-run skim offer."
+          }
+        }
+      ];
+      var queueIndex = 0;
+      var log = ["Installed copy is on v0.2.0. Auto-update is off."];
+
+      var badge = document.getElementById("version-badge");
+      var newer = document.getElementById("newer-pill");
+      var auto = document.getElementById("auto-update");
+      var fields = document.getElementById("fields");
+      var conflicts = document.getElementById("conflicts");
+      var notices = document.getElementById("notices");
+      var noticeCount = document.getElementById("notice-count");
+      var durable = document.getElementById("durable");
+      var changelog = document.getElementById("changelog");
+      var publishError = document.getElementById("publish-error");
+      var queueLabel = document.getElementById("queue-label");
+      var logList = document.getElementById("log");
+      var publishButton = document.getElementById("publish");
+      var updateButton = document.getElementById("apply-update");
+      var rollbackButton = document.getElementById("rollback");
+
+      var labels = {
+        name: "Name",
+        instructions: "Instructions",
+        routines: "Routines",
+        skills: "Skills"
+      };
+
+      function note(text) {
+        log.unshift(text);
+        if (log.length > 8) log.pop();
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      function renderFields(view) {
+        var active = document.activeElement;
+        TemplateUpdates.FIELDS.forEach(function (field) {
+          var box = document.getElementById("field-" + field);
+          var flagged = view.openConflicts.indexOf(field) !== -1;
+          var drifted = view.fields[field] !== view.baseFields[field];
+          if (!box) {
+            var label = document.createElement("label");
+            label.className = "field";
+            label.innerHTML = '<span>' + labels[field] + ' <em id="mark-' + field + '"></em></span>';
+            box = document.createElement("textarea");
+            box.id = "field-" + field;
+            box.dataset.field = field;
+            box.addEventListener("input", function () {
+              TemplateUpdates.editField(sim, field, box.value);
+              note("Edited " + labels[field].toLowerCase() + " on this copy.");
+              render();
+            });
+            label.appendChild(box);
+            fields.appendChild(label);
+          }
+          if (active !== box) box.value = view.fields[field];
+          var mark = document.getElementById("mark-" + field);
+          mark.textContent = flagged ? "Conflict" : drifted ? "Local edit" : "";
+        });
+      }
+
+      function renderConflicts(view) {
+        if (view.openConflicts.length === 0) {
+          conflicts.innerHTML = "";
+          return;
+        }
+        var latest = sim.versions[view.installedVersion];
+        conflicts.innerHTML = view.openConflicts.map(function (field) {
+          return (
+            '<article class="conflict">' +
+              '<h3>' + labels[field] + ' was edited here and in the template</h3>' +
+              '<p>This update did not replace your text. Choose what this copy should keep.</p>' +
+              '<div class="diff">' +
+                '<div><strong>Keep mine</strong>' + escapeHtml(view.fields[field]) + '</div>' +
+                '<div><strong>Take template</strong>' + escapeHtml(latest.fields[field]) + '</div>' +
+              '</div>' +
+              '<div class="row">' +
+                '<button type="button" class="choice" data-keep="' + field + '">Keep mine</button>' +
+                '<button type="button" class="choice" data-take="' + field + '">Take template</button>' +
+              '</div>' +
+            '</article>'
+          );
+        }).join("");
+        conflicts.querySelectorAll("[data-keep]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            TemplateUpdates.resolveConflict(sim, button.getAttribute("data-keep"), "keep");
+            note("Kept your " + button.getAttribute("data-keep") + ".");
+            render();
+          });
+        });
+        conflicts.querySelectorAll("[data-take]").forEach(function (button) {
+          button.addEventListener("click", function () {
+            TemplateUpdates.resolveConflict(sim, button.getAttribute("data-take"), "take");
+            note("Took the template " + button.getAttribute("data-take") + ".");
+            render();
+          });
+        });
+      }
+
+      function renderNotices(view) {
+        noticeCount.textContent = view.notices.length === 0
+          ? "No notice yet. A new version posts one, and running the bot does not post another."
+          : view.notices.length + (view.notices.length === 1 ? " notice." : " notices.") + " Runs so far: " + view.runCount + ".";
+        if (view.notices.length === 0) {
+          notices.innerHTML = '<p class="empty">No update notice.</p>';
+          return;
+        }
+        notices.innerHTML = view.notices.map(function (item) {
+          var title = item.type === "available"
+            ? "Update available: " + item.version
+            : "Updated to " + item.version;
+          var extra = "";
+          if (item.changedFields.length) {
+            extra += " Changed: " + item.changedFields.join(", ") + ".";
+          }
+          if (item.skippedFields.length) {
+            extra += " Left your edits in place: " + item.skippedFields.join(", ") + ".";
+          }
+          return (
+            '<article class="notice ' + item.type + '">' +
+              '<h3>' + title + '</h3>' +
+              '<p>' + escapeHtml(item.changelog) + escapeHtml(extra) + '</p>' +
+            '</article>'
+          );
+        }).join("");
+      }
+
+      function renderDurable(view) {
+        durable.innerHTML =
+          '<article><h3>Memory</h3><p>' + escapeHtml(view.memory[0].text) + '</p></article>' +
+          '<article><h3>Conversation</h3><p>' + escapeHtml(view.conversation[0].text) + '</p></article>' +
+          '<article><h3>Routine schedule</h3><p>' + escapeHtml(view.routineSchedule.label) + ' (' + escapeHtml(view.routineSchedule.cron) + ')</p></article>';
+      }
+
+      function renderPublisher() {
+        var next = queue[queueIndex];
+        if (!next) {
+          changelog.value = "";
+          changelog.disabled = true;
+          publishButton.disabled = true;
+          queueLabel.textContent = "Nothing further is queued. Installed copies pinned to an older version are still on that version until they update.";
+          return;
+        }
+        if (document.activeElement !== changelog) {
+          changelog.value = next.changelog;
+        }
+        changelog.disabled = false;
+        publishButton.disabled = false;
+        publishButton.textContent = "Publish " + next.version;
+        queueLabel.textContent = "Next deliberate publish: " + next.version + ". Installed copies stay on their current version.";
+      }
+
+      function render() {
+        var view = TemplateUpdates.view(sim);
+        badge.textContent = view.badgeText;
+        newer.textContent = view.newer ? "Newer version " + view.latestVersion : (view.openConflicts.length ? "Conflicts flagged" : "Up to date");
+        newer.className = view.newer || view.openConflicts.length ? "pill" : "pill quiet";
+        auto.checked = view.autoUpdate;
+        updateButton.disabled = !view.newer;
+        rollbackButton.disabled = !view.canRollback;
+        renderFields(view);
+        renderConflicts(view);
+        renderNotices(view);
+        renderDurable(view);
+        renderPublisher();
+        logList.innerHTML = log.map(function (line) {
+          return "<li>" + escapeHtml(line) + "</li>";
+        }).join("");
+      }
+
+      auto.addEventListener("change", function () {
+        TemplateUpdates.setAutoUpdate(sim, auto.checked);
+        note(auto.checked ? "Auto-update turned on." : "Auto-update turned off.");
+        render();
+      });
+
+      document.getElementById("run-bot").addEventListener("click", function () {
+        var result = TemplateUpdates.runBot(sim);
+        note("Ran the bot. Notices added this run: " + result.noticesAdded + ".");
+        render();
+      });
+
+      document.getElementById("apply-update").addEventListener("click", function () {
+        var result = TemplateUpdates.applyUpdate(sim, {});
+        if (!result.applied) {
+          note("No update to apply.");
+        } else if (result.skippedFields.length) {
+          note("Updated to " + sim.installedVersion + " and left " + result.skippedFields.join(", ") + " for you to choose.");
+        } else {
+          note("Updated to " + sim.installedVersion + ".");
+        }
+        render();
+      });
+
+      document.getElementById("rollback").addEventListener("click", function () {
+        var result = TemplateUpdates.rollback(sim);
+        note(result.rolledBack ? "Rolled back to " + result.version + ". Memory, chat, and schedule stayed." : "Nothing to roll back.");
+        render();
+      });
+
+      document.getElementById("edit-sample").addEventListener("click", function () {
+        TemplateUpdates.editField(
+          sim,
+          "instructions",
+          "Design one Grok Bot at a time. Never create a bot until I say the job is clear."
+        );
+        note("Wrote a local instruction edit.");
+        render();
+      });
+
+      publishButton.addEventListener("click", function () {
+        var next = queue[queueIndex];
+        publishError.textContent = "";
+        if (!next) return;
+        try {
+          TemplateUpdates.publishVersion(sim, {
+            version: next.version,
+            changelog: changelog.value,
+            fields: next.fields
+          });
+          queueIndex += 1;
+          note("Published " + next.version + ". The installed copy was not replaced by the publish itself.");
+          render();
+        } catch (error) {
+          publishError.textContent = error.message;
+        }
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>
