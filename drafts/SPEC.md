@@ -2,7 +2,7 @@
 
 Status: draft. This spec describes a simulation in `demo/`. It is not shipped in Grok Bot. The live product grade is FAIL, and this draft does not clear it.
 
-The ask, from [@Deluca98_](https://x.com/Deluca98_/status/2108112609610256863) on 8 October 2026, is that a change to a published template such as Dr Eggbot reaches people who already installed a copy, either automatically or as an opt-in.
+The ask, from a user on X on 8 October 2026, is that a change to a published template such as Dr Eggbot reaches people who already installed a copy, either automatically or as an opt-in.
 
 ## Terms
 

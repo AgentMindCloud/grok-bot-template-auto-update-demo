@@ -10,9 +10,7 @@ Checked 8 October 2026.
 
 ## Ask
 
-[@Deluca98_](https://x.com/Deluca98_/status/2108112609610256863), 8 October 2026, reply to [@poteto](https://x.com/poteto/status/2108042827007656059):
-
-> Two requests: some form of grok/grok bot overlay with onscreen context. And automatic grokbot template updates, ie if you make a change to dr eggbot for instance it updates for everyone automatically /have the option for automatic updates.
+A user asked on X, 8 October 2026, replying to the Dr Eggbot template author, for two things: an onscreen-context overlay, and automatic (or opt-in) Grok Bot template updates, so a change to a template such as Dr Eggbot reaches everyone who installed it.
 
 The onscreen-context overlay is out of scope. The template-update half is graded below.
 
@@ -106,7 +104,7 @@ The help index in [llms.txt](https://cursor.com/llms.txt) lists Grok Bot how-to,
 
 ### The live Dr Eggbot page has no version
 
-Share page linked from [@poteto, 8 October 2026](https://x.com/poteto/status/2108042827007656059): [https://x.ai/bot/_jOdbfkB16zxu7MRcmReE](https://x.ai/bot/_jOdbfkB16zxu7MRcmReE).
+Share page linked from the template author’s post of 8 October 2026: [https://x.ai/bot/_jOdbfkB16zxu7MRcmReE](https://x.ai/bot/_jOdbfkB16zxu7MRcmReE).
 
 Public HTML on 8 October 2026:
 
@@ -119,7 +117,7 @@ The page was not submitted. Add to Grok Bot was not clicked.
 
 ### The author's update path is reinstall
 
-[@poteto, 2 September 2026](https://x.com/poteto/status/2094967827019243547), Dr Eggbot v0.2.0, linking [https://x.ai/bot/93gOz3op1UQdBdbekQFLK](https://x.ai/bot/93gOz3op1UQdBdbekQFLK):
+The template author’s post of 2 September 2026, Dr Eggbot v0.2.0, linking [https://x.ai/bot/93gOz3op1UQdBdbekQFLK](https://x.ai/bot/93gOz3op1UQdBdbekQFLK):
 
 > to update you will need to reinstall dr eggbot. if you have anything you want to carry over, ask the new bot to copy over anything relevant, and then you can delete the old one
 
@@ -127,7 +125,7 @@ That is the failure in cases 2, 5, 6, 7, and 8, in the publisher's own words. Ve
 
 ### Staff: a shared template does not carry the live bot
 
-Forum thread [Shared Grok Bot team across teammates](https://forum.cursor.com/t/shared-grok-bot-team-across-teammates-same-roster-separate-chats/169904). Reply by Colin, Community Support Engineer, CursorStaff, 30 August 2026:
+Forum thread [Shared Grok Bot team across teammates](https://forum.cursor.com/t/shared-grok-bot-team-across-teammates-same-roster-separate-chats/169904). Reply by a Cursor community support engineer, 30 August 2026:
 
 > You are right that sharing a bot today creates a copy. Bot templates shipped recently as a first step, but they do not carry over live memory or conversation history.
 
